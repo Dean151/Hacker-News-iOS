@@ -8,9 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E9ADDD7A1C652FF5002792AC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ADDD791C652FF5002792AC /* AppDelegate.swift */; };
-		E9ADDD7C1C652FF5002792AC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ADDD7B1C652FF5002792AC /* ViewController.swift */; };
+		E9ADDD7C1C652FF5002792AC /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ADDD7B1C652FF5002792AC /* NewsViewController.swift */; };
 		E9ADDD7F1C652FF5002792AC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9ADDD7D1C652FF5002792AC /* Main.storyboard */; };
-		E9ADDD821C652FF5002792AC /* hacker_news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E9ADDD801C652FF5002792AC /* hacker_news.xcdatamodeld */; };
 		E9ADDD841C652FF5002792AC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9ADDD831C652FF5002792AC /* Assets.xcassets */; };
 		E9ADDD871C652FF5002792AC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9ADDD851C652FF5002792AC /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -18,9 +17,8 @@
 /* Begin PBXFileReference section */
 		E9ADDD761C652FF5002792AC /* hacker-news.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hacker-news.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9ADDD791C652FF5002792AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9ADDD7B1C652FF5002792AC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E9ADDD7B1C652FF5002792AC /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		E9ADDD7E1C652FF5002792AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E9ADDD811C652FF5002792AC /* hacker_news.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = hacker_news.xcdatamodel; sourceTree = "<group>"; };
 		E9ADDD831C652FF5002792AC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9ADDD861C652FF5002792AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9ADDD881C652FF5002792AC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,12 +55,11 @@
 			isa = PBXGroup;
 			children = (
 				E9ADDD791C652FF5002792AC /* AppDelegate.swift */,
-				E9ADDD7B1C652FF5002792AC /* ViewController.swift */,
+				E9ADDD7B1C652FF5002792AC /* NewsViewController.swift */,
 				E9ADDD7D1C652FF5002792AC /* Main.storyboard */,
 				E9ADDD831C652FF5002792AC /* Assets.xcassets */,
 				E9ADDD851C652FF5002792AC /* LaunchScreen.storyboard */,
 				E9ADDD881C652FF5002792AC /* Info.plist */,
-				E9ADDD801C652FF5002792AC /* hacker_news.xcdatamodeld */,
 			);
 			path = "hacker-news";
 			sourceTree = "<group>";
@@ -138,8 +135,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9ADDD821C652FF5002792AC /* hacker_news.xcdatamodeld in Sources */,
-				E9ADDD7C1C652FF5002792AC /* ViewController.swift in Sources */,
+				E9ADDD7C1C652FF5002792AC /* NewsViewController.swift in Sources */,
 				E9ADDD7A1C652FF5002792AC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,19 +288,6 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		E9ADDD801C652FF5002792AC /* hacker_news.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E9ADDD811C652FF5002792AC /* hacker_news.xcdatamodel */,
-			);
-			currentVersion = E9ADDD811C652FF5002792AC /* hacker_news.xcdatamodel */;
-			path = hacker_news.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = E9ADDD6E1C652FF5002792AC /* Project object */;
 }
