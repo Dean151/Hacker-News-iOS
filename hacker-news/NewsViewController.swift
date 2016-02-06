@@ -20,9 +20,12 @@ class NewsViewController: UITableViewController, ItemDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.setNeedsStatusBarAppearanceUpdate()
         
         // Creation of refresh control
         self.refreshControl = UIRefreshControl()
+        self.refreshControl!.backgroundColor = UIColor.hackerOrange
+        self.refreshControl!.tintColor = UIColor.whiteColor()
         self.refreshControl!.addTarget(self, action: Selector("loadData"), forControlEvents: .ValueChanged)
         
         self.loadData(showRefreshControl: true)
@@ -31,6 +34,10 @@ class NewsViewController: UITableViewController, ItemDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return .LightContent
     }
     
     func loadData() {
@@ -98,7 +105,9 @@ class NewsViewController: UITableViewController, ItemDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! ItemCell
         
-        cell.configure(item: itemAtIndexPath(indexPath)!)
+        if let item = itemAtIndexPath(indexPath) {
+            cell.configure(item: item)
+        }
         
         return cell
     }

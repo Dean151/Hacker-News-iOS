@@ -16,7 +16,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        self.customizeUI()
+        
         return true
+    }
+    
+    func customizeUI() {
+        // Orange
+        UINavigationBar.appearance().barTintColor = UIColor.hackerOrange
+        UINavigationBar.appearance().translucent = false
+        
+        // White
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        // No border
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), forBarPosition: .Any, barMetrics: .Default)
+        UINavigationBar.appearance().shadowImage = UIImage()
     }
 
     func applicationWillResignActive(application: UIApplication) {
