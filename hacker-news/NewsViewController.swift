@@ -13,7 +13,9 @@ import Alamofire
 class NewsViewController: UITableViewController, ItemDelegate {
 
     let url = "https://hacker-news.firebaseio.com/v0/topstories.json"
-    let reuseCellIdentifier = "itemCell"
+    let itemCellIdentifier = "itemCell"
+    let loadingCellIdentifier = "loadingCell"
+    let failureCellIdentifier = "failureCell"
     
     var items = [Item]()
     
@@ -84,16 +86,24 @@ class NewsViewController: UITableViewController, ItemDelegate {
         return nil
     }
     
-    // Mark: - Item Delegate
-    
-    func itemDidLoaded(item: Item) {
+    func reloadItem(item: Item) {
         if let indexPath = indexPathForItem(item) {
             self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
         }
     }
     
+    // Mark: - Item Delegate
+    
+    func itemWillLoad(item: Item) {
+        reloadItem(item)
+    }
+    
+    func itemDidLoaded(item: Item) {
+        reloadItem(item)
+    }
+    
     func itemDidFailLoading(item: Item) {
-        
+        reloadItem(item)
     }
     
     // Mark: - TableView
@@ -103,13 +113,30 @@ class NewsViewController: UITableViewController, ItemDelegate {
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(reuseCellIdentifier, forIndexPath: indexPath) as! ItemCell
         
         if let item = itemAtIndexPath(indexPath) {
-            cell.configure(item: item)
+            if item.isLoaded {
+                let cell = tableView.dequeueReusableCellWithIdentifier(itemCellIdentifier, forIndexPath: indexPath) as! ItemCell
+                
+                cell.configure(item: item)
+                
+                return cell
+            } else if item.failLoading {
+                let cell = tableView.dequeueReusableCellWithIdentifier(failureCellIdentifier, forIndexPath: indexPath) as! FailureCell
+                
+                cell.configure(item: item)
+                
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCellWithIdentifier(loadingCellIdentifier, forIndexPath: indexPath)
+                
+                item.loadFromId()
+                
+                return cell
+            }
         }
         
-        return cell
+        return UITableViewCell(style: .Default, reuseIdentifier: nil)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

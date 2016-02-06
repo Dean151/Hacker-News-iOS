@@ -26,6 +26,7 @@ import Foundation
 import Alamofire
 
 protocol ItemDelegate {
+    func itemWillLoad(item: Item)
     func itemDidLoaded(item: Item)
     func itemDidFailLoading(item: Item)
 }
@@ -38,6 +39,7 @@ class Item: Equatable {
     
     let id: Int
     var isLoaded = false
+    var failLoading = false
     var delegate: ItemDelegate?
     
     var title: String?
@@ -53,18 +55,27 @@ class Item: Equatable {
     }
     
     func loadFromId() {
+        self.failLoading = false
+        self.isLoaded = false
         Alamofire.request(.GET, Item.itemBaseUrl(self.id)).responseJSON { (response) -> Void in
             if let data = response.result.value as? [String: AnyObject] {
                 self.isLoaded = true
+                self.failLoading = false
                 self.title = data["title"] as? String
                 self.text = data["text"] as? String
                 self.url = data["url"] as? String
                 
                 self.delegate?.itemDidLoaded(self)
             } else {
+                self.failLoading = true
                 self.delegate?.itemDidFailLoading(self)
             }
         }
+    }
+    
+    func loadFromButton() {
+        self.loadFromId()
+        self.delegate?.itemWillLoad(self)
     }
 }
 

@@ -22,9 +22,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-pp-NuQ">
-                                            <rect key="frame" x="290" y="12" width="20" height="20"/>
-                                        </activityIndicatorView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g7C-Pa-Igy">
                                             <rect key="frame" x="8" y="11.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,9 +30,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ClU-pp-NuQ" firstAttribute="centerY" secondItem="rRF-rn-VXk" secondAttribute="centerY" id="EYz-W9-2P3"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="centerY" secondItem="rRF-rn-VXk" secondAttribute="centerY" id="O5l-Bn-MqL"/>
-                                        <constraint firstItem="ClU-pp-NuQ" firstAttribute="centerX" secondItem="rRF-rn-VXk" secondAttribute="centerX" id="a9H-Vh-3F4"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="leading" secondItem="rRF-rn-VXk" secondAttribute="leadingMargin" id="ysD-S8-xXu"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="centerX" secondItem="rRF-rn-VXk" secondAttribute="centerX" id="z2d-HK-GYl"/>
                                     </constraints>
@@ -46,9 +41,48 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="activityIndicator" destination="ClU-pp-NuQ" id="zuw-UA-jzj"/>
                                     <outlet property="titleLabel" destination="g7C-Pa-Igy" id="Oii-YR-O0g"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="loadingCell" id="DBX-jQ-BYC">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DBX-jQ-BYC" id="aJ5-Zf-jKl">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-P2-KS8">
+                                            <rect key="frame" x="290" y="12" width="20" height="20"/>
+                                        </activityIndicatorView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="MU2-P2-KS8" firstAttribute="centerX" secondItem="aJ5-Zf-jKl" secondAttribute="centerX" id="I3i-ZL-95t"/>
+                                        <constraint firstItem="MU2-P2-KS8" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="fKk-1z-M11"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="failureCell" id="IcU-9Q-3Qm" customClass="FailureCell" customModule="hacker_news" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="180" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IcU-9Q-3Qm" id="fHf-bh-8Pw">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2dy-zD-J6v">
+                                            <rect key="frame" x="277" y="7" width="46" height="30"/>
+                                            <state key="normal" title="Retry">
+                                                <color key="titleColor" red="0.97670525312423706" green="0.60546392202377319" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="retry:" destination="IcU-9Q-3Qm" eventType="touchUpInside" id="X34-HT-8xB"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2dy-zD-J6v" firstAttribute="centerY" secondItem="fHf-bh-8Pw" secondAttribute="centerY" id="3Pk-1v-XWk"/>
+                                        <constraint firstItem="2dy-zD-J6v" firstAttribute="centerX" secondItem="fHf-bh-8Pw" secondAttribute="centerX" id="8NA-xe-qiX"/>
+                                    </constraints>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
