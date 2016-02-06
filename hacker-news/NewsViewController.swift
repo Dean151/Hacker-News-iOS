@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SafariServices
 
 import Alamofire
 
-class NewsViewController: UITableViewController, ItemDelegate {
+class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewControllerDelegate {
 
     let url = "https://hacker-news.firebaseio.com/v0/topstories.json"
     let itemCellIdentifier = "itemCell"
@@ -29,8 +30,15 @@ class NewsViewController: UITableViewController, ItemDelegate {
         self.refreshControl!.backgroundColor = UIColor.hackerOrange
         self.refreshControl!.tintColor = UIColor.whiteColor()
         self.refreshControl!.addTarget(self, action: Selector("loadData"), forControlEvents: .ValueChanged)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         
-        self.loadData(showRefreshControl: true)
+        self.clearsSelectionOnViewWillAppear = true
+        
+        if items.count == 0 {
+            self.loadData(showRefreshControl: animated)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,7 +100,7 @@ class NewsViewController: UITableViewController, ItemDelegate {
         }
     }
     
-    // Mark: - Item Delegate
+    // Mark: - ItemDelegate
     
     func itemWillLoad(item: Item) {
         reloadItem(item)
@@ -106,15 +114,19 @@ class NewsViewController: UITableViewController, ItemDelegate {
         reloadItem(item)
     }
     
-    // Mark: - TableView
+    // Mark: - SFSafariViewControllerDelegate
+    
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Mark: - TableViewDataSource & Delegate
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        
         
         if let item = itemAtIndexPath(indexPath) {
             
@@ -136,7 +148,17 @@ class NewsViewController: UITableViewController, ItemDelegate {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
+            if let url = cell.item?.url {
+                if let nsurl = NSURL(string: url) {
+                    let safariVC = SFSafariViewController(URL: nsurl)
+                    safariVC.delegate = self
+                    self.presentViewController(safariVC, animated: true, completion: nil)
+                }
+            }
+        } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
     }
 }
 
