@@ -10,10 +10,14 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
+    @IBOutlet weak var numberLabel: UILabel!
+    
     weak var item: Item?
     
     func configure(item item: Item, indexPath: NSIndexPath) {
         
         self.item = item
+        
+        self.numberLabel.text = "\(indexPath.row + 1)."
     }
 }
