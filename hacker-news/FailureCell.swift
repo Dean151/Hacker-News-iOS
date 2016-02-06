@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FailureCell: ItemCell {
+final class FailureCell: ItemCell {
     
     @IBAction func retry(sender: UIButton) {
         item?.loadFromButton()

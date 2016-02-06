@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SuccessCell: ItemCell {
+final class SuccessCell: ItemCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
