@@ -114,26 +114,22 @@ class NewsViewController: UITableViewController, ItemDelegate {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
+        
+        
         if let item = itemAtIndexPath(indexPath) {
+            
+            var cellID = loadingCellIdentifier
             if item.isLoaded {
-                let cell = tableView.dequeueReusableCellWithIdentifier(itemCellIdentifier, forIndexPath: indexPath) as! ItemCell
-                
-                cell.configure(item: item)
-                
-                return cell
+                cellID = itemCellIdentifier
             } else if item.failLoading {
-                let cell = tableView.dequeueReusableCellWithIdentifier(failureCellIdentifier, forIndexPath: indexPath) as! FailureCell
-                
-                cell.configure(item: item)
-                
-                return cell
-            } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier(loadingCellIdentifier, forIndexPath: indexPath)
-                
-                item.loadFromId()
-                
-                return cell
+                cellID = failureCellIdentifier
             }
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellID, forIndexPath: indexPath) as! ItemCell
+            
+            cell.configure(item: item, indexPath: indexPath)
+            
+            return cell
         }
         
         return UITableViewCell(style: .Default, reuseIdentifier: nil)

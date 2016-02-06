@@ -10,14 +10,10 @@ import UIKit
 
 class ItemCell: UITableViewCell {
     
-    @IBOutlet weak var titleLabel: UILabel!
+    weak var item: Item?
     
-    func configure(item item: Item) {
+    func configure(item item: Item, indexPath: NSIndexPath) {
         
-        self.titleLabel.text = item.title
-            
-        if let _ = item.url {
-            self.accessoryType = .DisclosureIndicator
-        }
+        self.item = item
     }
 }

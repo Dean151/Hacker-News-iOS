@@ -8,13 +8,7 @@
 
 import UIKit
 
-class FailureCell: UITableViewCell {
-    
-    weak var item: Item?
-    
-    func configure(item item: Item) {
-        self.item = item
-    }
+class FailureCell: ItemCell {
     
     @IBAction func retry(sender: UIButton) {
         item?.loadFromButton()
