@@ -12,4 +12,8 @@ extension UIColor {
     static var hackerOrange: UIColor {
         return UIColor(red: 1, green: 0.4, blue: 0, alpha: 1)
     }
+    
+    static var hackerLightOrange: UIColor {
+        return UIColor(red: 1, green: 0.4, blue: 0, alpha: 0.4)
+    }
 }
