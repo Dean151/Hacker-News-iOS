@@ -34,7 +34,9 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     
     override func viewWillAppear(animated: Bool) {
         
-        self.clearsSelectionOnViewWillAppear = true
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         
         if items.count == 0 {
             self.loadData(showRefreshControl: animated)
