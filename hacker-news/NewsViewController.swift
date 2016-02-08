@@ -170,7 +170,7 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
             if let url = cell.item?.url {
                 if let nsurl = NSURL(string: url) {
-                    let safariVC = SFSafariViewController(URL: nsurl)
+                    let safariVC = SFSafariViewController(URL: nsurl, entersReaderIfAvailable: Settings.instance.useSafariReader)
                     safariVC.delegate = self
                     self.presentViewController(safariVC, animated: true, completion: nil)
                 }
