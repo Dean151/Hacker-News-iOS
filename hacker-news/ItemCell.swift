@@ -17,7 +17,7 @@ class ItemCell: UITableViewCell {
     func configure(item item: Item, indexPath: NSIndexPath) {
         
         let view = UIView(frame: CGRectZero)
-        view.backgroundColor = UIColor.hackerLightOrange
+        view.backgroundColor = UIColor.hackerLightOrangeColor
         self.selectedBackgroundView = view
         
         self.item = item

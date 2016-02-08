@@ -27,7 +27,7 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         
         // Creation of refresh control
         self.refreshControl = UIRefreshControl()
-        self.refreshControl!.backgroundColor = UIColor.hackerOrange
+        self.refreshControl!.backgroundColor = UIColor.hackerOrangeColor
         self.refreshControl!.tintColor = UIColor.whiteColor()
         self.refreshControl!.addTarget(self, action: Selector("loadData"), forControlEvents: .ValueChanged)
     }

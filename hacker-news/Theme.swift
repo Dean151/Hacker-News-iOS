@@ -9,11 +9,15 @@
 import UIKit
 
 extension UIColor {
-    static var hackerOrange: UIColor {
+    static var hackerOrangeColor: UIColor {
         return UIColor(red: 1, green: 0.4, blue: 0, alpha: 1)
     }
     
-    static var hackerLightOrange: UIColor {
+    static var hackerLightOrangeColor: UIColor {
         return UIColor(red: 1, green: 0.4, blue: 0, alpha: 0.4)
+    }
+    
+    static var hackerLoadingPlaceholderColor: UIColor {
+        return UIColor(white: 0.8, alpha: 1)
     }
 }

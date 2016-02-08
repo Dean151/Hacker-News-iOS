@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func customizeUI() {
         // Orange
-        UINavigationBar.appearance().barTintColor = UIColor.hackerOrange
+        UINavigationBar.appearance().barTintColor = UIColor.hackerOrangeColor
         UINavigationBar.appearance().translucent = false
         
         // White

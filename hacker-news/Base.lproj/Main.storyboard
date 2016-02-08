@@ -68,20 +68,25 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="MU2-P2-KS8">
-                                            <rect key="frame" x="290" y="12" width="20" height="20"/>
-                                            <color key="color" red="0.9767052531" green="0.60546392199999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </activityIndicatorView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ugm-G5-vr8" customClass="FBShimmeringView">
+                                            <rect key="frame" x="32.5" y="13" width="240" height="18"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="OfM-IO-ieT"/>
+                                                <constraint firstAttribute="width" constant="240" id="t57-7l-KbF"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="5Qo-xj-spu" firstAttribute="leading" secondItem="aJ5-Zf-jKl" secondAttribute="leadingMargin" id="05B-7X-042"/>
-                                        <constraint firstItem="MU2-P2-KS8" firstAttribute="centerX" secondItem="aJ5-Zf-jKl" secondAttribute="centerX" id="I3i-ZL-95t"/>
-                                        <constraint firstItem="MU2-P2-KS8" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="fKk-1z-M11"/>
+                                        <constraint firstItem="Ugm-G5-vr8" firstAttribute="leading" secondItem="5Qo-xj-spu" secondAttribute="trailing" constant="10" id="HDR-TP-dwv"/>
+                                        <constraint firstItem="Ugm-G5-vr8" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="Ve5-Vj-MfI"/>
                                         <constraint firstItem="5Qo-xj-spu" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="pgO-Cb-7bb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="activityIndicator" destination="MU2-P2-KS8" id="Inx-2d-69H"/>
+                                    <outlet property="loadingView" destination="Ugm-G5-vr8" id="eWq-ki-Uxu"/>
+                                    <outlet property="loadingWidthConstraint" destination="t57-7l-KbF" id="SfQ-Xr-5A7"/>
                                     <outlet property="numberLabel" destination="5Qo-xj-spu" id="1Dn-lR-Njd"/>
                                 </connections>
                             </tableViewCell>
