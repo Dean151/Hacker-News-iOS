@@ -19,6 +19,19 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     let failureCellIdentifier = "failureCell"
     
     var items = [Item]()
+    var lastRefresh: NSDate? {
+        didSet {
+            if let date = lastRefresh {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateStyle = .MediumStyle
+                dateFormatter.timeStyle = .ShortStyle
+                
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "Last refresh on \(dateFormatter.stringFromDate(date))", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            } else {
+                self.refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSForegroundColorAttributeName: UIColor.whiteColor()])
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +43,8 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         self.refreshControl!.backgroundColor = UIColor.hackerOrangeColor
         self.refreshControl!.tintColor = UIColor.whiteColor()
         self.refreshControl!.addTarget(self, action: Selector("loadData"), forControlEvents: .ValueChanged)
+        
+        self.lastRefresh = nil
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -73,6 +88,8 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
                     item.delegate = self
                     self.items.append(item)
                 }
+                
+                self.lastRefresh = NSDate()
             }
             
             self.tableView.reloadData()
