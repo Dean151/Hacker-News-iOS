@@ -36,13 +36,13 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.setNeedsStatusBarAppearanceUpdate()
+        self.navigationController?.navigationBar.barStyle = .Black
         
         // Creation of refresh control
         self.refreshControl = UIRefreshControl()
         self.refreshControl!.backgroundColor = UIColor.hackerOrangeColor
         self.refreshControl!.tintColor = UIColor.whiteColor()
-        self.refreshControl!.addTarget(self, action: Selector("loadData"), forControlEvents: .ValueChanged)
+        self.refreshControl!.addTarget(self, action: #selector(NewsViewController.loadData as (NewsViewController) -> () -> ()), forControlEvents: .ValueChanged)
         
         self.lastRefresh = nil
     }
@@ -61,10 +61,6 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
     }
     
     func loadData() {

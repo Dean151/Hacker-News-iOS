@@ -19,6 +19,8 @@ final class SuccessCell: ItemCell {
         
         if let _ = item.url {
             self.accessoryType = .DisclosureIndicator
+        } else {
+            self.accessoryType = .None
         }
     }
 }
