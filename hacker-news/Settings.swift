@@ -7,28 +7,41 @@
 //
 
 import Foundation
+import Eureka
 
-class Settings {
+enum Settings: String {
+    case UseSafariReader = "useSafariReader"
     
-    static let instance = Settings()
-    
-    private init() {
-        // Default values
-        if (userDefault.objectForKey(useSafariReaderKey) == nil) {
-            useSafariReader = true
+    var description: String {
+        switch self {
+        case .UseSafariReader:
+            return "Use reader mode by default"
         }
     }
     
-    private let userDefault = NSUserDefaults.standardUserDefaults()
-    
-    private let useSafariReaderKey = "useSafariReader"
-    var useSafariReader: Bool {
-        get {
-            return userDefault.boolForKey(useSafariReaderKey)
-        }
-        set {
-            userDefault.setBool(newValue, forKey: useSafariReaderKey)
+    var value: AnyObject {
+        switch self {
+        case .UseSafariReader:
+            return NSUserDefaults.standardUserDefaults().boolForKey(self.rawValue)
         }
     }
     
+    func setValue(value: AnyObject?) {
+        switch self {
+        case .UseSafariReader:
+            return NSUserDefaults.standardUserDefaults().setBool(value as! Bool, forKey: self.rawValue)
+        }
+    }
+    
+    var row: BaseRow {
+        switch self {
+        case .UseSafariReader:
+            return SwitchRow(self.rawValue) {
+                $0.title = self.description
+                $0.value = self.value as? Bool
+            }.onChange {
+                self.setValue($0.value)
+            }
+        }
+    }
 }

@@ -36,7 +36,12 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // Setting item
+        self.navigationItem.title = "Hacker News"
         self.navigationController?.navigationBar.barStyle = .Black
+        let settingsItem = UIBarButtonItem(image: UIImage(named: "Settings"), style: .Plain, target: self, action: #selector(NewsViewController.openSettings(_:)))
+        self.navigationItem.rightBarButtonItem = settingsItem
         
         // Creation of refresh control
         self.refreshControl = UIRefreshControl()
@@ -61,6 +66,16 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func openSettings(sender: UIBarButtonItem) {
+        let settingsVC = SettingsViewController(style: .Grouped)
+        let navVC = UINavigationController(rootViewController: settingsVC)
+        navVC.modalPresentationStyle = .Popover
+        navVC.popoverPresentationController?.barButtonItem = sender
+        navVC.preferredContentSize = CGSizeMake(320, 100)
+        
+        presentViewController(navVC, animated: true, completion: nil)
     }
     
     func loadData() {
@@ -166,7 +181,7 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
             if let url = cell.item?.url {
                 if let nsurl = NSURL(string: url) {
-                    let safariVC = SFSafariViewController(URL: nsurl, entersReaderIfAvailable: Settings.instance.useSafariReader)
+                    let safariVC = SFSafariViewController(URL: nsurl, entersReaderIfAvailable: Settings.UseSafariReader.value as! Bool)
                     safariVC.delegate = self
                     self.presentViewController(safariVC, animated: true, completion: nil)
                 }

@@ -1,15 +1,18 @@
 PODS:
-  - Alamofire (3.2.0)
+  - Alamofire (3.3.1)
+  - Eureka (1.5.0)
   - Shimmer (1.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - Eureka (~> 1.5)
   - Shimmer
 
 SPEC CHECKSUMS:
-  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
 
-PODFILE CHECKSUM: a33dffd75d55bfcaa9e7a92519c78ca31ca3d691
+PODFILE CHECKSUM: 0846f92b008b4d74842fcb85ce09774a78abca9e
 
 COCOAPODS: 1.0.0.beta.2
