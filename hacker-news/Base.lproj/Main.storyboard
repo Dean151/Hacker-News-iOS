@@ -26,6 +26,9 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <variation key="widthClass=regular" misplaced="YES">
+                                                <rect key="frame" x="30" y="12" width="660" height="18"/>
+                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5SX-3H-ags">
                                             <rect key="frame" x="8" y="11" width="12" height="20.5"/>
@@ -35,18 +38,28 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="g7C-Pa-Igy" firstAttribute="trailing" secondItem="rRF-rn-VXk" secondAttribute="trailingMargin" priority="750" id="435-gU-kvk"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="leading" secondItem="5SX-3H-ags" secondAttribute="trailing" constant="10" id="Lgy-p1-FF6"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="centerY" secondItem="rRF-rn-VXk" secondAttribute="centerY" id="O5l-Bn-MqL"/>
-                                        <constraint firstItem="5SX-3H-ags" firstAttribute="leading" secondItem="rRF-rn-VXk" secondAttribute="leadingMargin" id="Qle-Bz-8h1"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="g7C-Pa-Igy" secondAttribute="trailing" id="agU-mf-zky"/>
+                                        <constraint firstItem="g7C-Pa-Igy" firstAttribute="trailing" secondItem="rRF-rn-VXk" secondAttribute="trailingMargin" constant="120" id="Ra9-D5-CET"/>
+                                        <constraint firstItem="5SX-3H-ags" firstAttribute="leading" secondItem="rRF-rn-VXk" secondAttribute="leadingMargin" priority="750" id="bzH-aY-Gcf"/>
                                         <constraint firstItem="5SX-3H-ags" firstAttribute="centerY" secondItem="rRF-rn-VXk" secondAttribute="centerY" id="ro4-GE-K0X"/>
+                                        <constraint firstItem="5SX-3H-ags" firstAttribute="leading" secondItem="rRF-rn-VXk" secondAttribute="leadingMargin" constant="120" id="vaH-wk-Vug"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="leading" secondItem="rRF-rn-VXk" secondAttribute="leadingMargin" id="ysD-S8-xXu"/>
                                         <constraint firstItem="g7C-Pa-Igy" firstAttribute="centerX" secondItem="rRF-rn-VXk" secondAttribute="centerX" id="z2d-HK-GYl"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="vaH-wk-Vug"/>
+                                            <exclude reference="Ra9-D5-CET"/>
                                             <exclude reference="ysD-S8-xXu"/>
                                             <exclude reference="z2d-HK-GYl"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=regular">
+                                        <mask key="constraints">
+                                            <include reference="vaH-wk-Vug"/>
+                                            <include reference="Ra9-D5-CET"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -78,11 +91,22 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="5Qo-xj-spu" firstAttribute="leading" secondItem="aJ5-Zf-jKl" secondAttribute="leadingMargin" id="05B-7X-042"/>
                                         <constraint firstItem="Ugm-G5-vr8" firstAttribute="leading" secondItem="5Qo-xj-spu" secondAttribute="trailing" constant="10" id="HDR-TP-dwv"/>
                                         <constraint firstItem="Ugm-G5-vr8" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="Ve5-Vj-MfI"/>
+                                        <constraint firstItem="5Qo-xj-spu" firstAttribute="leading" secondItem="aJ5-Zf-jKl" secondAttribute="leadingMargin" constant="120" id="pDS-29-esH"/>
                                         <constraint firstItem="5Qo-xj-spu" firstAttribute="centerY" secondItem="aJ5-Zf-jKl" secondAttribute="centerY" id="pgO-Cb-7bb"/>
+                                        <constraint firstItem="5Qo-xj-spu" firstAttribute="leading" secondItem="aJ5-Zf-jKl" secondAttribute="leadingMargin" priority="750" id="upj-at-0JA"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="pDS-29-esH"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=regular">
+                                        <mask key="constraints">
+                                            <include reference="pDS-29-esH"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="loadingView" destination="Ugm-G5-vr8" id="eWq-ki-Uxu"/>
@@ -117,8 +141,19 @@
                                         <constraint firstItem="2dy-zD-J6v" firstAttribute="centerY" secondItem="fHf-bh-8Pw" secondAttribute="centerY" id="3Pk-1v-XWk"/>
                                         <constraint firstItem="2dy-zD-J6v" firstAttribute="centerX" secondItem="fHf-bh-8Pw" secondAttribute="centerX" id="8NA-xe-qiX"/>
                                         <constraint firstItem="cQk-I5-f0E" firstAttribute="centerY" secondItem="fHf-bh-8Pw" secondAttribute="centerY" id="Fef-dP-fdt"/>
-                                        <constraint firstItem="cQk-I5-f0E" firstAttribute="leading" secondItem="fHf-bh-8Pw" secondAttribute="leadingMargin" id="pdt-0j-BvK"/>
+                                        <constraint firstItem="cQk-I5-f0E" firstAttribute="leading" secondItem="fHf-bh-8Pw" secondAttribute="leadingMargin" priority="750" id="fmI-W1-pLb"/>
+                                        <constraint firstItem="cQk-I5-f0E" firstAttribute="leading" secondItem="fHf-bh-8Pw" secondAttribute="leadingMargin" constant="120" id="kle-iQ-fxC"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="kle-iQ-fxC"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="widthClass=regular">
+                                        <mask key="constraints">
+                                            <include reference="kle-iQ-fxC"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="numberLabel" destination="cQk-I5-f0E" id="Noi-4T-DE8"/>
