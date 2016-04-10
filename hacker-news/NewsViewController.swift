@@ -181,9 +181,13 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
             if let url = cell.item?.url {
                 if let nsurl = NSURL(string: url) {
-                    let safariVC = SFSafariViewController(URL: nsurl, entersReaderIfAvailable: Settings.UseSafariReader.value as! Bool)
-                    safariVC.delegate = self
-                    self.presentViewController(safariVC, animated: true, completion: nil)
+                    if Settings.OpenInSafari.value as! Bool == true {
+                        UIApplication.sharedApplication().openURL(nsurl)
+                    } else {
+                        let safariVC = SFSafariViewController(URL: nsurl, entersReaderIfAvailable: Settings.UseSafariReader.value as! Bool)
+                        safariVC.delegate = self
+                        self.presentViewController(safariVC, animated: true, completion: nil)
+                    }
                 }
             }
         } else {

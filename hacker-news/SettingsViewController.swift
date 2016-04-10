@@ -19,8 +19,9 @@ class SettingsViewController: FormViewController {
         self.navigationController?.navigationBar.barStyle = .Black
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SettingsViewController.close))
         
-        form +++ Section("Safari")
-            <<< Settings.UseSafariReader.row
+        form +++ Section("Opening Links")
+            <<< Settings.UseSafariReader.row!
+            <<< Settings.OpenInSafari.row!
     }
     
     func close() {
