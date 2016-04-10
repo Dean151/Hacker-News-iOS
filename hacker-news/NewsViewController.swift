@@ -53,12 +53,17 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     }
     
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let indexPath = self.tableView.indexPathForSelectedRow {
             self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
-        if items.count == 0 {
+        if shouldAutoRefresh {
             self.loadData(showRefreshControl: animated)
         }
     }
@@ -77,6 +82,20 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         navVC.preferredContentSize = CGSizeMake(320, 250)
         
         presentViewController(navVC, animated: true, completion: nil)
+    }
+    
+    var shouldAutoRefresh: Bool {
+        // No item, we refresh
+        if items.count == 0 {
+            return true
+        }
+        
+        // Last refreshed 10 minutes ago, we refresh
+        if lastRefresh?.compare(NSDate(timeIntervalSinceNow: 60*10)) == .OrderedDescending {
+            return true
+        }
+        
+        return false
     }
     
     func loadData() {
