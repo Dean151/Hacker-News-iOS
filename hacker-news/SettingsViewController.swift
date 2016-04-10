@@ -9,6 +9,9 @@
 import Eureka
 
 class SettingsViewController: FormViewController {
+    
+    weak var newsVC: NewsViewController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,6 +25,21 @@ class SettingsViewController: FormViewController {
         form +++ Section("Opening Links")
             <<< Settings.UseSafariReader.row!
             <<< Settings.OpenInSafari.row!
+        
+        +++ Section("Readed Stories")
+            <<< (Settings.ReadedStories.row as! ButtonRow).onCellSelection { cell, row in
+                let alert = UIAlertController(title: "This will reset readed stories data from all your devices", message: "Are you sure you want to proceed?", preferredStyle: .ActionSheet)
+                alert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
+                    self.newsVC?.items.forEach({ $0.readed = false })
+                    self.newsVC?.tableView.reloadData()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                
+                alert.popoverPresentationController?.sourceView = cell
+                alert.popoverPresentationController?.sourceRect = cell.bounds
+                
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
     }
     
     func close() {

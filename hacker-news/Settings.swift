@@ -21,7 +21,7 @@ enum Settings: String {
         case .OpenInSafari:
             return "Open links in Safari"
         case .ReadedStories:
-            return "unmark all readed stories"
+            return "Unmark all readed stories"
         }
     }
     
@@ -67,6 +67,16 @@ enum Settings: String {
                 $0.value = self.value as? Bool
             }.onChange {
                 self.setValue($0.value)
+            }
+        default:
+            break
+        }
+        
+        switch self {
+        case .ReadedStories:
+            return ButtonRow(self.rawValue).cellSetup(){ (cell, row) -> () in
+                cell.tintColor = UIColor.hackerOrangeColor
+                row.title = self.description
             }
         default:
             break

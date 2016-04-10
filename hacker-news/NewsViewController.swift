@@ -70,10 +70,11 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
     
     func openSettings(sender: UIBarButtonItem) {
         let settingsVC = SettingsViewController(style: .Grouped)
+        settingsVC.newsVC = self
         let navVC = UINavigationController(rootViewController: settingsVC)
         navVC.modalPresentationStyle = .Popover
         navVC.popoverPresentationController?.barButtonItem = sender
-        navVC.preferredContentSize = CGSizeMake(320, 100)
+        navVC.preferredContentSize = CGSizeMake(320, 250)
         
         presentViewController(navVC, animated: true, completion: nil)
     }
