@@ -45,6 +45,7 @@ class Item: Equatable {
     var title: String?
     var text: String?
     var url: String?
+    var readed = false
     
     init(id: Int, loadIt: Bool) {
         self.id = id

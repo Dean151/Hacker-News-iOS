@@ -15,12 +15,29 @@ final class SuccessCell: ItemCell {
     override func configure(item item: Item, indexPath: NSIndexPath) {
         super.configure(item: item, indexPath: indexPath)
         
-        self.titleLabel.text = item.title
-        
-        if let _ = item.url {
-            self.accessoryType = .DisclosureIndicator
+        titleLabel.text = item.title
+        refreshTextColor()
+        refreshAccessoryType()
+    }
+    
+    func refreshAccessoryType() {
+        if let _ = item?.url {
+            accessoryType = .DisclosureIndicator
         } else {
-            self.accessoryType = .None
+            accessoryType = .None
         }
+    }
+    
+    func refreshTextColor() {
+        if item?.readed == true {
+            titleLabel.textColor = UIColor.grayColor()
+        } else {
+            titleLabel.textColor = UIColor.darkTextColor()
+        }
+    }
+    
+    func setReaded() {
+        item?.readed = true
+        refreshTextColor()
     }
 }

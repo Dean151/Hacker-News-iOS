@@ -181,6 +181,7 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
             if let url = cell.item?.url {
                 if let nsurl = NSURL(string: url) {
+                    cell.setReaded()
                     if Settings.OpenInSafari.value as! Bool == true {
                         UIApplication.sharedApplication().openURL(nsurl)
                     } else {
