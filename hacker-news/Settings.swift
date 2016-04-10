@@ -12,6 +12,7 @@ import Eureka
 enum Settings: String {
     case UseSafariReader = "useSafariReader"
     case OpenInSafari = "openInSafari"
+    case ReadedStories = "readedStories"
     
     var description: String {
         switch self {
@@ -19,6 +20,8 @@ enum Settings: String {
             return "Open in reader mode if available"
         case .OpenInSafari:
             return "Open links in Safari"
+        case .ReadedStories:
+            return "unmark all readed stories"
         }
     }
     
@@ -28,6 +31,8 @@ enum Settings: String {
             return true
         case .OpenInSafari:
             return false
+        case .ReadedStories:
+            return [Int]()
         }
     }
     
@@ -41,7 +46,7 @@ enum Settings: String {
         case is Bool:
             return NSUserDefaults.standardUserDefaults().boolForKey(self.rawValue)
         default:
-            return nil
+            return NSUserDefaults.standardUserDefaults().objectForKey(self.rawValue)
         }
     }
     
@@ -50,7 +55,7 @@ enum Settings: String {
         case is Bool:
             NSUserDefaults.standardUserDefaults().setBool(value as! Bool, forKey: self.rawValue)
         default:
-            break
+            NSUserDefaults.standardUserDefaults().setObject(value, forKey: self.rawValue)
         }
     }
     
@@ -64,7 +69,9 @@ enum Settings: String {
                 self.setValue($0.value)
             }
         default:
-            return nil
+            break
         }
+        
+        return nil
     }
 }

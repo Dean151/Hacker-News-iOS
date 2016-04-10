@@ -45,10 +45,36 @@ class Item: Equatable {
     var title: String?
     var text: String?
     var url: String?
-    var readed = false
+    
+    private var _readed = false
+    var readed: Bool {
+        get {
+            return _readed
+        }
+        set {
+            if _readed != newValue {
+                _readed = newValue
+                
+                // Persistence
+                var readedStories = Settings.ReadedStories.value as! [Int]
+                if readed {
+                    readedStories.append(id)
+                    Settings.ReadedStories.setValue(readedStories)
+                } else {
+                    if let index = readedStories.indexOf(id) {
+                        readedStories.removeAtIndex(index)
+                        Settings.ReadedStories.setValue(readedStories)
+                    }
+                }
+            }
+        }
+    }
     
     init(id: Int, loadIt: Bool) {
         self.id = id
+        
+        let readedStories = Settings.ReadedStories.value as! [Int]
+        _readed = readedStories.contains(id)
         
         if loadIt {
             self.loadFromId()
