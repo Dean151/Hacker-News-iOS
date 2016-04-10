@@ -5,7 +5,9 @@ use_frameworks!
 
 target 'hacker-news' do
    pod 'Alamofire', '~> 3.0'
+   pod 'Crashlytics'
    pod 'Eureka', '~> 1.5'
+   pod 'Fabric'
    pod 'Shimmer'
 end
 

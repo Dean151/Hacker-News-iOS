@@ -1,18 +1,25 @@
 PODS:
   - Alamofire (3.3.1)
+  - Crashlytics (3.7.0):
+    - Fabric (~> 1.6.3)
   - Eureka (1.5.0)
+  - Fabric (1.6.7)
   - Shimmer (1.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
+  - Crashlytics
   - Eureka (~> 1.5)
+  - Fabric
   - Shimmer
 
 SPEC CHECKSUMS:
   Alamofire: 369bc67b6f5ac33ded3648d7bd21c5bfb91c2ecc
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Eureka: 2fb37bb50569c62ee3284689d5b7aca694b040e0
+  Fabric: caf7580c725e64db144f610ac65cd60956911dc7
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
 
-PODFILE CHECKSUM: 0846f92b008b4d74842fcb85ce09774a78abca9e
+PODFILE CHECKSUM: b9a4b7fc9ffceaa82a5716b60262573387b3b4e7
 
 COCOAPODS: 1.0.0.beta.2
