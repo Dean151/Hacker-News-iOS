@@ -12,6 +12,7 @@ import Eureka
 enum Settings: String {
     case UseSafariReader = "useSafariReader"
     case OpenInSafari = "openInSafari"
+    case ReadedStories = "readedStories"
     
     var description: String {
         switch self {
@@ -19,6 +20,8 @@ enum Settings: String {
             return "Open in reader mode if available"
         case .OpenInSafari:
             return "Open links in Safari"
+        case .ReadedStories:
+            return "Unmark all readed stories"
         }
     }
     
@@ -28,10 +31,19 @@ enum Settings: String {
             return true
         case .OpenInSafari:
             return false
+        case .ReadedStories:
+            return [Int]()
         }
     }
     
     var value: AnyObject? {
+        
+        // iCloud Value
+        let keyStore = NSUbiquitousKeyValueStore()
+        if let cloudValue = keyStore.objectForKey(self.rawValue) {
+            return cloudValue
+        }
+        
         // Default value
         if NSUserDefaults.standardUserDefaults().objectForKey(self.rawValue) == nil {
             return self.defaultValue
@@ -41,7 +53,7 @@ enum Settings: String {
         case is Bool:
             return NSUserDefaults.standardUserDefaults().boolForKey(self.rawValue)
         default:
-            return nil
+            return NSUserDefaults.standardUserDefaults().objectForKey(self.rawValue)
         }
     }
     
@@ -49,9 +61,16 @@ enum Settings: String {
         switch self.defaultValue {
         case is Bool:
             NSUserDefaults.standardUserDefaults().setBool(value as! Bool, forKey: self.rawValue)
+            syncWithiCloud()
         default:
-            break
+            NSUserDefaults.standardUserDefaults().setObject(value, forKey: self.rawValue)
         }
+    }
+    
+    func syncWithiCloud() {
+        let keyStore = NSUbiquitousKeyValueStore()
+        keyStore.setObject(value, forKey: self.rawValue)
+        keyStore.synchronize()
     }
     
     var row: BaseRow? {
@@ -64,7 +83,19 @@ enum Settings: String {
                 self.setValue($0.value)
             }
         default:
-            return nil
+            break
         }
+        
+        switch self {
+        case .ReadedStories:
+            return ButtonRow(self.rawValue).cellSetup(){ (cell, row) -> () in
+                cell.tintColor = UIColor.hackerOrangeColor
+                row.title = self.description
+            }
+        default:
+            break
+        }
+        
+        return nil
     }
 }

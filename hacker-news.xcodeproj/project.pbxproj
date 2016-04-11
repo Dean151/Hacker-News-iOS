@@ -41,6 +41,7 @@
 		E9AB9E721CBA78B6003B1E2A /* hacker-news.release.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "hacker-news.release.xcconfig"; sourceTree = "<group>"; };
 		E9AB9E731CBA78B6003B1E2A /* Keys.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Keys.xcconfig; sourceTree = "<group>"; };
 		E9AB9E771CBA78C1003B1E2A /* Keys.example.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Keys.example.xcconfig; sourceTree = "<group>"; };
+		E9AB9E7C1CBC0B67003B1E2A /* hacker-news.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "hacker-news.entitlements"; sourceTree = "<group>"; };
 		E9ADDD761C652FF5002792AC /* hacker-news.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "hacker-news.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9ADDD791C652FF5002792AC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9ADDD7B1C652FF5002792AC /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 				E9ADDD7D1C652FF5002792AC /* Main.storyboard */,
 				E9ADDD831C652FF5002792AC /* Assets.xcassets */,
 				E9ADDD851C652FF5002792AC /* LaunchScreen.storyboard */,
+				E9AB9E7C1CBC0B67003B1E2A /* hacker-news.entitlements */,
 				E9ADDD881C652FF5002792AC /* Info.plist */,
 			);
 			path = "hacker-news";
@@ -201,6 +203,11 @@
 					E9ADDD751C652FF5002792AC = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 6EL5V5QVB4;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -430,6 +437,7 @@
 			baseConfigurationReference = E9AB9E711CBA78B6003B1E2A /* hacker-news.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "hacker-news/hacker-news.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "hacker-news/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -444,6 +452,7 @@
 			baseConfigurationReference = E9AB9E721CBA78B6003B1E2A /* hacker-news.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "hacker-news/hacker-news.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "hacker-news/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
