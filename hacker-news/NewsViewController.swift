@@ -11,7 +11,7 @@ import SafariServices
 
 import Alamofire
 
-class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewControllerDelegate {
+class NewsViewController: UITableViewController {
 
     let url = "https://hacker-news.firebaseio.com/v0/topstories.json"
     let itemCellIdentifier = "itemCell"
@@ -150,27 +150,7 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         }
     }
     
-    // Mark: - ItemDelegate
-    
-    func itemWillLoad(item: Item) {
-        reloadItem(item)
-    }
-    
-    func itemDidLoaded(item: Item) {
-        reloadItem(item)
-    }
-    
-    func itemDidFailLoading(item: Item) {
-        reloadItem(item)
-    }
-    
-    // Mark: - SFSafariViewControllerDelegate
-    
-    func safariViewControllerDidFinish(controller: SFSafariViewController) {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // Mark: - TableViewDataSource & Delegate
+    // Mark: - UITableViewDataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.items.count
@@ -197,6 +177,8 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
         return UITableViewCell(style: .Default, reuseIdentifier: nil)
     }
     
+    // Mark: - UITableViewDelegate
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell {
             if let url = cell.item?.url {
@@ -215,5 +197,55 @@ class NewsViewController: UITableViewController, ItemDelegate, SFSafariViewContr
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
         }
     }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return itemAtIndexPath(indexPath)?.isLoaded == true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {}
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        if let item = itemAtIndexPath(indexPath) {
+            let action = UITableViewRowAction(style: .Normal,
+                                              title: item.readed ? "Mark as unread" : "Mark as read",
+                                              handler: { (action, indexPath) in
+                item.setReaded(!item.readed, synchronizeWithICloud: true)
+                                                
+                // Changing the UI accordingly
+                (tableView.cellForRowAtIndexPath(indexPath) as? SuccessCell)?.updateTextColor()
+                action.title = item.readed ? "Mark as unread" : "Mark as read"
+                                                
+                // Closing the row action
+                tableView.setEditing(false, animated: true)
+            })
+            action.backgroundColor = UIColor.hackerTableViewActionColor
+            return [action]
+        }
+        
+        return nil
+    }
 }
 
+// Mark: - ItemDelegate
+
+extension NewsViewController: ItemDelegate {
+    func itemWillLoad(item: Item) {
+        reloadItem(item)
+    }
+    
+    func itemDidLoaded(item: Item) {
+        reloadItem(item)
+    }
+    
+    func itemDidFailLoading(item: Item) {
+        reloadItem(item)
+    }
+}
+
+// Mark: - SFSafariViewControllerDelegate
+
+extension NewsViewController: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(controller: SFSafariViewController) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+}

@@ -20,4 +20,8 @@ extension UIColor {
     static var hackerLoadingPlaceholderColor: UIColor {
         return UIColor(white: 0.8, alpha: 1)
     }
+    
+    static var hackerTableViewActionColor: UIColor {
+        return UIColor(red: 0, green: 0.48, blue: 1, alpha: 1)
+    }
 }

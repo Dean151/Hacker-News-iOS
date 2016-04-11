@@ -16,11 +16,11 @@ final class SuccessCell: ItemCell {
         super.configure(item: item, indexPath: indexPath)
         
         titleLabel.text = item.title
-        refreshTextColor()
-        refreshAccessoryType()
+        updateTextColor()
+        updateAccessoryType()
     }
     
-    func refreshAccessoryType() {
+    func updateAccessoryType() {
         if let _ = item?.url {
             accessoryType = .DisclosureIndicator
         } else {
@@ -28,16 +28,18 @@ final class SuccessCell: ItemCell {
         }
     }
     
-    func refreshTextColor() {
+    func updateTextColor() {
         if item?.readed == true {
             titleLabel.textColor = UIColor.grayColor()
+            numberLabel.textColor = UIColor.grayColor()
         } else {
             titleLabel.textColor = UIColor.darkTextColor()
+            numberLabel.textColor = UIColor.darkTextColor()
         }
     }
     
     func setReaded() {
         item?.setReaded(true, synchronizeWithICloud: true)
-        refreshTextColor()
+        updateTextColor()
     }
 }

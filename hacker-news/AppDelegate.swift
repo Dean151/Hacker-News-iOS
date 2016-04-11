@@ -24,7 +24,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Fabric.with([Crashlytics.self])
         
+        // register to observe notifications from the store
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.didChangeExternalNotification(_:)), name: NSUbiquitousKeyValueStoreDidChangeExternallyNotification, object: NSUbiquitousKeyValueStore.defaultStore())
+        
+        // get changes that might have happened while this
+        // instance of your app wasn't running
+        NSUbiquitousKeyValueStore.defaultStore().synchronize()
+        
         return true
+    }
+    
+    func didChangeExternalNotification(notification: NSNotification) {
+        if let cloudIds = NSUbiquitousKeyValueStore.defaultStore().objectForKey(Settings.ReadedStories.rawValue) as? [Int],
+            var localIds = Settings.ReadedStories.value as? [Int] {
+            for id in cloudIds {
+                if !localIds.contains(id) {
+                    localIds.append(id)
+                }
+            }
+        }
     }
     
     func customizeUI() {
