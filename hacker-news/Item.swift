@@ -70,6 +70,13 @@ class Item: Equatable {
         }
     }
     
+    func setReaded(readed: Bool, synchronizeWithICloud: Bool) {
+        self.readed = readed
+        if synchronizeWithICloud {
+            Settings.ReadedStories.syncWithiCloud()
+        }
+    }
+    
     init(id: Int, loadIt: Bool) {
         self.id = id
         

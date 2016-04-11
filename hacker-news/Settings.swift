@@ -37,6 +37,13 @@ enum Settings: String {
     }
     
     var value: AnyObject? {
+        
+        // iCloud Value
+        let keyStore = NSUbiquitousKeyValueStore()
+        if let cloudValue = keyStore.objectForKey(self.rawValue) {
+            return cloudValue
+        }
+        
         // Default value
         if NSUserDefaults.standardUserDefaults().objectForKey(self.rawValue) == nil {
             return self.defaultValue
@@ -54,9 +61,16 @@ enum Settings: String {
         switch self.defaultValue {
         case is Bool:
             NSUserDefaults.standardUserDefaults().setBool(value as! Bool, forKey: self.rawValue)
+            syncWithiCloud()
         default:
             NSUserDefaults.standardUserDefaults().setObject(value, forKey: self.rawValue)
         }
+    }
+    
+    func syncWithiCloud() {
+        let keyStore = NSUbiquitousKeyValueStore()
+        keyStore.setObject(value, forKey: self.rawValue)
+        keyStore.synchronize()
     }
     
     var row: BaseRow? {

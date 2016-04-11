@@ -31,6 +31,7 @@ class SettingsViewController: FormViewController {
                 let alert = UIAlertController(title: "This will reset readed stories data from all your devices", message: "Are you sure you want to proceed?", preferredStyle: .ActionSheet)
                 alert.addAction(UIAlertAction(title: "Delete", style: .Destructive, handler: { _ in
                     self.newsVC?.items.forEach({ $0.readed = false })
+                    Settings.ReadedStories.syncWithiCloud()
                     self.newsVC?.tableView.reloadData()
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))

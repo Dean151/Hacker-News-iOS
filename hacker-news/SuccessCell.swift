@@ -37,7 +37,7 @@ final class SuccessCell: ItemCell {
     }
     
     func setReaded() {
-        item?.readed = true
+        item?.setReaded(true, synchronizeWithICloud: true)
         refreshTextColor()
     }
 }
